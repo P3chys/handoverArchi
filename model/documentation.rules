@@ -1,0 +1,21 @@
+panel warning Open question
+tag blue security
+tag grey internal
+bold Description:
+bold Rationale:
+style color=#bf2600 background=#ffebe6 size=120% bold italic Deadline
+token variable color=#6554c0 italic
+heading 2 color=#0052cc size=120%
+sql background=#f4f5f7 theme=midnight linenumbers
+exclude label draft
+hide property internal*
+text contents = Table of contents
+catalog "Applications" type=Application Component|Application Service columns=name,Owner,description
+catalog "Core apps" type=Application* folder=Application/Core columns=name,Owner
+catalog "Nodes" type=Node columns=name
+index tables
+index variables
+index constants
+profile developers folders=Views/Sales formats=html,pdf exclude=#internal hide=Owner language=cs output=out-profile-dev
+profile "Sales team" views="Order flow",Applications formats=html output=out-profile-sales
+profile wp workpackages=RBWDP-20025 formats=html,pdf,confluence output=out-profile-wp

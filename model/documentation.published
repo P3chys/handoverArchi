@@ -1,0 +1,212 @@
+# documentationArchi: what the published documentation of this model shows. Written by "Publish"; do not edit.
+e-actor	kind	element
+e-actor	name	Customer
+e-actor	type	Business Actor: Broker
+e-actor	print	95fdbb126cc203aee7cf5119,6dfc5e2a5ea312174ec85d68
+e-actor	time	1794343154470
+e-actor	f:Description	Description: a person who buys. Rationale: drives the whole flow.\n\nINFO: Info panel text.\nNOTE: Note panel text.\nTIP: Tip panel text.\nWARNING: Warning panel text.\nOpen question: custom panel from rules.\n\n<#>An untitled note panel.</#>\n\nLabels: #risk #deprecated #todo #new [[security]] #internal-not-a-label #rsik\n\nDeadline is a styled keyword.\n\n- bullet one\n  continued line\n* bullet two\n1. numbered one\n2. numbered two\n\n**bold** and *italic*, but select * and 2*3 stay.\n[the spec](https://example.com/spec) and a bare link https://example.com/a?b=1&c=2 and [ORDERS] alone.\n\n| Column A | Column B |\n|---|---|\n| a1 | b1 |\n| a2 | b2 |\n\n| not | a table |\n\n```java\nclass Hello { }\n```\n\n<code lang="python">print("hi")</code>\n\nRefs: [[ref:e-core]], [[ref:v-claims|the claims view]], [[ref:e-excl]], [[ref:e-gone]].
+e-actor	f:Property Owner	Sales dept
+e-actor	f:Property Status	#new
+e-actor	f:Relationship → Assignment Relationship Place order	Customer performs ordering. #risk
+e-api	kind	element
+e-api	name	Orders API
+e-api	type	Application Service
+e-api	print	4b9f8256135e16bd9ad20b71,7fd53d2f4a052eb051d6965d
+e-api	time	1794343154470
+e-api	f:Description	REST API.
+e-api	f:Relationship → Serving Relationship Place order	(no description)
+e-api	f:Relationship ← Realization Relationship Customer Portal	(no description)
+e-api	f:Work packages	RBWDP-20025 Portal ordering (change)
+e-approve	kind	element
+e-approve	name	Approve claim
+e-approve	type	Business Process
+e-approve	print	e135515db30ec28f356251a1,a7862d8286dfc23720ff1531
+e-approve	time	1794343154470
+e-approve	f:Description	Approves.
+e-approve	f:Relationship ← Triggering Relationship Check claim	(no description)
+e-billing	kind	element
+e-billing	name	Billing Module
+e-billing	type	Application Component
+e-billing	print	01ac6078cbe8ed45e18500c1,4f4aad6368fbc0ef4173d48d
+e-billing	time	1794343154470
+e-billing	f:Description	Bills.
+e-billing	f:Property Owner	Team A
+e-billing	f:Relationship → Serving Relationship Orphan service	(no description)
+e-check	kind	element
+e-check	name	Check claim
+e-check	type	Business Process
+e-check	print	44c64a9aafa30fe9a681d666,a7862d8286dfc23720ff1531
+e-check	time	1794343154470
+e-check	f:Description	Checks [CLAIMS].
+e-check	f:Relationship → Triggering Relationship Approve claim and Notify customer	(no description)
+e-check	f:Relationship ← Triggering Relationship Receive claim	(no description)
+e-core	kind	element
+e-core	name	Core System
+e-core	type	Application Component
+e-core	print	0e8aabd6d976c22c1ba35c04,4f4aad6368fbc0ef4173d48d
+e-core	time	1794343154470
+e-core	f:Description	The core. First paragraph for catalog.\n\nSecond paragraph.
+e-core	f:Property Owner	Team A
+e-core	f:Relationship ← Flow Relationship: Sync "orders" Customer Portal	(no description)
+e-core	f:Work packages	RBWDP-20025 Portal ordering
+e-internal	kind	element
+e-internal	name	Internal role
+e-internal	type	Business Role
+e-internal	print	47585cbdc2dfdbd25e131329,df5d30f2637b8fe0d08352c4
+e-internal	time	1794343154470
+e-internal	f:Description	Only for insiders #internal
+e-nodesc	kind	element
+e-nodesc	name	Undescribed object
+e-nodesc	type	Business Object
+e-nodesc	print	0324ed6558e126914ebd8fd0,1985584d4e72e453af697aac
+e-nodesc	time	1794343154470
+e-notify	kind	element
+e-notify	name	Notify customer
+e-notify	type	Business Process
+e-notify	print	80cddbe209c7d46f8c0f8459,a7862d8286dfc23720ff1531
+e-notify	time	1794343154470
+e-notify	f:Description	Notifies.
+e-notify	f:Relationship ← Triggering Relationship Check claim	(no description)
+e-orphan	kind	element
+e-orphan	name	Orphan service
+e-orphan	type	Business Service
+e-orphan	print	3e05c0471912adcdfc84f02b,2ff6b690faa4f6545d3b7bbd
+e-orphan	time	1794343154470
+e-orphan	f:Description	On no view.
+e-orphan	f:Relationship ← Serving Relationship Billing Module	(no description)
+e-orphan	f:Work packages	RBWDP-20040 (remove)
+e-portal	kind	element
+e-portal	name	Customer Portal
+e-portal	type	Application Component
+e-portal	print	3ad6d3a6a3536361c73d59e8,4f4aad6368fbc0ef4173d48d
+e-portal	time	1794343154470
+e-portal	f:Description	Web portal.
+e-portal	f:Property Owner	Team B
+e-portal	f:Relationship → Serving Relationship "serves" Place order	WARNING: only channel at night.
+e-portal	f:Relationship → Realization Relationship Orders API	(no description)
+e-portal	f:Relationship → Flow Relationship: Sync "orders" Core System	(no description)
+e-portal	f:Work packages	RBWDP-20025 Portal ordering (new)
+e-proc	kind	element
+e-proc	name	Place order
+e-proc	type	Business Process
+e-proc	print	7147622b1dbbc24338b196fa,a7862d8286dfc23720ff1531
+e-proc	time	1794343154470
+e-proc	f:Description	Reads [ORDERS] where status = 'ACTIVE' for {client_id}; writes [ORDER_LINES].\n\n<sql>\nselect o.id from [ORDERS] o\n where o.status = 'ACTIVE' and o.client = {client_id}\n   and o.total < 100\n</sql>\n\nImage: [[asset:diagrams/flow.png|Order flow picture]]\nCSV short form: asset:pricing.csv\nPDF link: [[asset:docs/SLA 2026.pdf|the SLA]]\nSVG: [[asset:logo.svg]]\nMissing: [[asset:nothere.png]]\nAmbiguous: [[asset:readme.txt]]
+e-proc	f:Relationship ← Assignment Relationship Customer	Customer performs ordering. #risk
+e-proc	f:Relationship ← Serving Relationship "serves" Customer Portal	WARNING: only channel at night.
+e-proc	f:Relationship ← Serving Relationship Orders API	(no description)
+e-recv	kind	element
+e-recv	name	Receive claim
+e-recv	type	Business Event
+e-recv	print	a6ff01422ac87b146dd9efc8,a27f968af90ba84e4941f87c
+e-recv	time	1794343154470
+e-recv	f:Description	Claim arrives. Uses {claim_id} and 'OPEN'.
+e-recv	f:Relationship → Triggering Relationship Check claim or Reject claim	(no description)
+e-reject	kind	element
+e-reject	name	Reject claim
+e-reject	type	Business Process
+e-reject	print	9b66d958386ed0d6375247c5,a7862d8286dfc23720ff1531
+e-reject	time	1794343154470
+e-reject	f:Description	Rejects.
+e-reject	f:Relationship ← Triggering Relationship Receive claim	(no description)
+j-and	print	a7203eb4c0da6f2003dce0a8,4215490512028ab495c9a05e
+j-and	time	1794343154470
+j-or	print	4cbf37aa71a05c48078324f5,4215490512028ab495c9a05e
+j-or	time	1794343154470
+m-1	kind	page
+m-1	name	Feature Test
+m-1	print	fe7a75901ba1a88784da0467,e3b0c44298fc1c149afbf4c8
+m-1	time	1794343154470
+m-1	f:Description	Model that exercises every documentation feature.\n\nINFO: The purpose shows on the overview page and PDF cover.
+m-1	f:Property Model owner	Architecture team
+r-api	print	18284bff93c666b9b46d95f9,dd5adb9b86b9eb44d21439ae
+r-api	time	1794343154470
+r-assign	print	f50d2ac1de9699135b2be1aa,cb553d588a7f0126e0cbff2f
+r-assign	time	1794343154470
+r-billing	print	bc420af2d49b828cb75af016,dd5adb9b86b9eb44d21439ae
+r-billing	time	1794343154470
+r-flow	print	3d787a43434d7fd9f7d31844,1a971f12674fe2c8e2a9f396
+r-flow	time	1794343154470
+r-real	print	ad04a9140e74907bddbb96d6,ba27cc6f845dda4f76f836db
+r-real	time	1794343154470
+r-serve	print	9b7f544a0287762bebb80152,dd5adb9b86b9eb44d21439ae
+r-serve	time	1794343154470
+r-t1	print	e77cda60a48ece4af12a29bb,69bc06e76777a7486e47606a
+r-t1	time	1794343154470
+r-t2	print	c07072b6339b22b65db85800,69bc06e76777a7486e47606a
+r-t2	time	1794343154470
+r-t3	print	af4b10fa2e030380af92325d,69bc06e76777a7486e47606a
+r-t3	time	1794343154470
+r-t4	print	a6758dce43ac2a6bd2130eee,69bc06e76777a7486e47606a
+r-t4	time	1794343154470
+r-t5	print	54078ddbf2b034960bfa79fb,69bc06e76777a7486e47606a
+r-t5	time	1794343154470
+r-t6	print	c275cee4775221516e8b0c8a,69bc06e76777a7486e47606a
+r-t6	time	1794343154470
+r-wp1	print	922bf94e952d1a4fe04ee3d5,0f2e58e1680fa1a62fb51a4b
+r-wp1	time	1794343154470
+r-wp2	print	61fd9fc670117f4552fd6182,0f2e58e1680fa1a62fb51a4b
+r-wp2	time	1794343154470
+r-wp3	print	6b7dc8f0480703d565f6f8d8,0f2e58e1680fa1a62fb51a4b
+r-wp3	time	1794343154470
+r-wp5	print	5b88638abed4c5fefa12f588,0f2e58e1680fa1a62fb51a4b
+r-wp5	time	1794343154470
+v-app	kind	view
+v-app	name	Applications
+v-app	print	96fae2acebb55f0248ac044d,28e7f9f559226754c9a0544c
+v-app	time	1794343154470
+v-app	f:Elements	Billing Module, Core System, Customer, Customer Portal
+v-canvas	kind	view
+v-canvas	name	Canvas board
+v-canvas	print	040a3ada903b6e3bc14d6858,54397b97d24b0d9eff6cec9b
+v-canvas	time	1794343154470
+v-canvas	f:Texts	Canvas sticky content WARNING: careful\n\nCanvas sticky notes [ORDERS]\n\nCanvas block content
+v-claims	kind	view
+v-claims	name	Claim handling
+v-claims	print	4002c235d119a2c81b19c3fb,af37998c28e4afdf7091e837
+v-claims	time	1794343154470
+v-claims	f:Description	Wide view (landscape PDF page) with junctions.
+v-claims	f:Elements	Approve claim, Check claim, Notify customer, Receive claim, Reject claim
+v-empty	kind	view
+v-empty	name	Empty view
+v-empty	print	653d028106aa773d71de77c6,591d0af6a12f0e3fcbe1c7c4
+v-empty	time	1794343154470
+v-legacy	kind	view
+v-legacy	name	Legacy channel
+v-legacy	print	aaf1ad7695f71c97d3cf7d38,32d12394e541cd5e6cd53d3a
+v-legacy	time	1794343154470
+v-legacy	f:Elements	Internal role, Undescribed object
+v-sales	kind	view
+v-sales	name	Order flow
+v-sales	print	0f1cffd5d3bb404978da40c5,79131864d544b19d7afbbd91
+v-sales	time	1794343154470
+v-sales	f:Description	How a customer orders. See [[ref:v-app]].\n\n[[asset:diagrams/flow.png]]
+v-sales	f:Property Version	1.2
+v-sales	f:Notes	View note: #todo add SLA. Link [[ref:e-core]].
+v-sales	f:Elements	Place order, Orders API, Customer Portal, Customer
+v-sketch	kind	view
+v-sketch	name	Workshop sketch
+v-sketch	print	70e551570dc0ecca4cf66bb1,d23bf64cb4e0181144906b2c
+v-sketch	time	1794343154470
+v-sketch	f:Texts	Idea: \n\nSales rep: Actor text.\n\nSketch group: Group text.
+wp-1	kind	element
+wp-1	name	RBWDP-20025 Portal ordering
+wp-1	type	Work Package
+wp-1	print	aafcd32de44c72eb0cc938c5,585295c85b18d7bd42505e8c
+wp-1	time	1794343154470
+wp-1	f:Description	Spec: portal sends orders to core. #todo
+wp-1	f:Property Sprint	42
+wp-1	f:Changed elements	Customer Portal (new), Orders API (change), Core System
+wp-4	kind	element
+wp-4	name	RBWDP-20040
+wp-4	type	Work Package
+wp-4	print	6a7e12d3a4f2455983f89354,e0bae33a86a9dabbedebf8e2
+wp-4	time	1794343154470
+wp-4	f:Description	Removes the orphan.
+wp-4	f:Changed elements	Orphan service (remove)
+wp-empty	kind	element
+wp-empty	name	RBWDP-20099
+wp-empty	type	Work Package
+wp-empty	print	bfed435686532b9b9f8acc61,e0bae33a86a9dabbedebf8e2
+wp-empty	time	1794343154470
+wp-empty	f:Description	Changes nothing.

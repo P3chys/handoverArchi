@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:archimate="http://www.archimatetool.com/archimate" xmlns:canvas="http://www.archimatetool.com/archimate/canvas" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Feature Test" id="m-1" version="5.0.0">
+  <folder name="Strategy" id="f-strat" type="strategy"/>
+  <folder name="Business" id="f-bus" type="business">
+    <element xsi:type="archimate:BusinessActor" name="Customer" id="e-actor" profiles="p-broker">
+      <documentation>Description: a person who buys. Rationale: drives the whole flow.
+
+INFO: Info panel text.
+NOTE: Note panel text.
+TIP: Tip panel text.
+WARNING: Warning panel text.
+Open question: custom panel from rules.
+
+&lt;#&gt;An untitled note panel.&lt;/#&gt;
+
+Labels: #risk #deprecated #todo #new [[security]] #internal-not-a-label #rsik
+
+Deadline is a styled keyword.
+
+- bullet one
+  continued line
+* bullet two
+1. numbered one
+2. numbered two
+
+**bold** and *italic*, but select * and 2*3 stay.
+[the spec](https://example.com/spec) and a bare link https://example.com/a?b=1&amp;c=2 and [ORDERS] alone.
+
+| Column A | Column B |
+|---|---|
+| a1 | b1 |
+| a2 | b2 |
+
+| not | a table |
+
+```java
+class Hello { }
+```
+
+&lt;code lang="python"&gt;print("hi")&lt;/code&gt;
+
+Refs: [[ref:e-core]], [[ref:v-claims|the claims view]], [[ref:e-excl]], [[ref:e-gone]].</documentation>
+      <property key="Owner" value="Sales dept"/>
+      <property key="internalCost" value="1000 (hidden)"/>
+      <property key="Status" value="#new"/>
+      <property key="doc:home" value="v-app"/>
+    </element>
+    <element xsi:type="archimate:BusinessProcess" name="Place order" id="e-proc">
+      <documentation>Reads [ORDERS] where status = 'ACTIVE' for {client_id}; writes [ORDER_LINES].
+
+&lt;sql&gt;
+select o.id from [ORDERS] o
+ where o.status = 'ACTIVE' and o.client = {client_id}
+   and o.total &lt; 100
+&lt;/sql&gt;
+
+Image: [[asset:diagrams/flow.png|Order flow picture]]
+CSV short form: asset:pricing.csv
+PDF link: [[asset:docs/SLA 2026.pdf|the SLA]]
+SVG: [[asset:logo.svg]]
+Missing: [[asset:nothere.png]]
+Ambiguous: [[asset:readme.txt]]</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessEvent" name="Receive claim" id="e-recv">
+      <documentation>Claim arrives. Uses {claim_id} and 'OPEN'.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessProcess" name="Check claim" id="e-check">
+      <documentation>Checks [CLAIMS].</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessProcess" name="Reject claim" id="e-reject">
+      <documentation>Rejects.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessProcess" name="Approve claim" id="e-approve">
+      <documentation>Approves.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessService" name="Fraud check" id="e-new"><documentation>Added after publish.</documentation></element>
+    <element xsi:type="archimate:BusinessService" name="Orphan service" id="e-orphan">
+      <documentation>On no view.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="Undescribed object" id="e-nodesc"/>
+    <element xsi:type="archimate:BusinessEvent" name="Draft idea" id="e-draft">
+      <documentation>Not ready #draft</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessRole" name="Secret element" id="e-excl">
+      <documentation>Excluded by property.</documentation>
+      <property key="doc:exclude" value="true"/>
+    </element>
+    <element xsi:type="archimate:BusinessRole" name="Internal role" id="e-internal">
+      <documentation>Only for insiders #internal</documentation>
+    </element>
+    <element xsi:type="archimate:Junction" id="j-or" type="or"/>
+    <element xsi:type="archimate:Junction" id="j-and"/>
+  </folder>
+  <folder name="Application" id="f-app" type="application">
+    <documentation>Application layer.</documentation>
+    <folder name="Core" id="f-app-core">
+      <element xsi:type="archimate:ApplicationComponent" name="Core System" id="e-core">
+        <documentation>The core, rewritten. First paragraph for catalog.
+
+Second paragraph.</documentation>
+        <property key="Owner" value="Team A"/>
+      </element>
+      <element xsi:type="archimate:ApplicationComponent" name="Billing Module" id="e-billing">
+        <documentation>Bills.</documentation>
+        <property key="Owner" value="Team A"/>
+      </element>
+    </folder>
+    <element xsi:type="archimate:ApplicationComponent" name="Customer Portal" id="e-portal">
+      <documentation>Web portal.</documentation>
+      <property key="Owner" value="Team C"/>
+    </element>
+    <element xsi:type="archimate:ApplicationService" name="Orders API v2" id="e-api">
+      <documentation>REST API.</documentation>
+    </element>
+  </folder>
+  <folder name="Technology &amp; Physical" id="f-tech" type="technology"/>
+  <folder name="Motivation" id="f-mot" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="f-impl" type="implementation_migration">
+    <element xsi:type="archimate:WorkPackage" name="RBWDP-20025 Portal ordering" id="wp-1">
+      <documentation>Spec: portal sends orders to core. #todo</documentation>
+      <property key="Sprint" value="42"/>
+    </element>
+    <element xsi:type="archimate:WorkPackage" name="RBWDP-20030" id="wp-closed">
+      <documentation>Closed ticket.</documentation>
+      <property key="doc:closed" value="true"/>
+    </element>
+    <element xsi:type="archimate:WorkPackage" name="RBWDP-20099" id="wp-empty">
+      <documentation>Changes nothing.</documentation>
+    </element>
+    <element xsi:type="archimate:WorkPackage" name="RBWDP-20040" id="wp-4">
+      <documentation>Removes the orphan.</documentation>
+    </element>
+  </folder>
+  <folder name="Other" id="f-other" type="other">
+    <element xsi:type="archimate:Grouping" name="PrintOrder" id="g-po"/>
+    <folder name="Hidden folder" id="f-hidden">
+      <property key="doc:exclude" value="yes"/>
+      <element xsi:type="archimate:Location" name="Hidden place" id="e-hidden">
+        <documentation>In an excluded folder.</documentation>
+      </element>
+    </folder>
+  </folder>
+  <folder name="Relations" id="f-rel" type="relations">
+    <element xsi:type="archimate:AssignmentRelationship" id="r-assign" source="e-actor" target="e-proc">
+      <documentation>Customer performs ordering. #risk</documentation>
+    </element>
+    <element xsi:type="archimate:ServingRelationship" name="serves" id="r-serve" source="e-portal" target="e-proc">
+      <documentation>WARNING: only channel at night.</documentation>
+    </element>
+    <element xsi:type="archimate:ServingRelationship" id="r-api" source="e-api" target="e-proc"/>
+    <element xsi:type="archimate:RealizationRelationship" id="r-real" source="e-portal" target="e-api"/>
+    <element xsi:type="archimate:FlowRelationship" name="orders" id="r-flow" source="e-portal" target="e-core" profiles="p-sync">
+      <property key="Protocol" value="HTTPS"/>
+    </element>
+    <element xsi:type="archimate:ServingRelationship" id="r-billing" source="e-billing" target="e-orphan"/>
+    <element xsi:type="archimate:AssociationRelationship" id="r-excl" source="e-actor" target="e-portal">
+      <property key="doc:exclude" value="true"/>
+    </element>
+    <element xsi:type="archimate:TriggeringRelationship" id="r-t1" source="e-recv" target="j-or"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="r-t2" source="j-or" target="e-check"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="r-t3" source="j-or" target="e-reject"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="r-t4" source="e-check" target="j-and"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="r-t5" source="j-and" target="e-approve"/>
+    <element xsi:type="archimate:AssociationRelationship" name="new" id="r-wp1" source="e-portal" target="wp-1"/>
+    <element xsi:type="archimate:AssociationRelationship" name="change" id="r-wp2" source="wp-1" target="e-api"/>
+    <element xsi:type="archimate:AssociationRelationship" id="r-wp3" source="e-core" target="wp-1"/>
+    <element xsi:type="archimate:AssociationRelationship" id="r-wp4" source="e-billing" target="wp-closed"/>
+    <element xsi:type="archimate:AssociationRelationship" name="remove" id="r-wp5" source="e-orphan" target="wp-4"/>
+    <element xsi:type="archimate:AssociationRelationship" name="001" id="r-po1" source="e-proc" target="g-po"/>
+    <element xsi:type="archimate:AssociationRelationship" name="002" id="r-po2" source="e-portal" target="g-po"/>
+    <element xsi:type="archimate:AssociationRelationship" name="003" id="r-po3" source="e-api" target="g-po"/>
+  </folder>
+  <folder name="Views" id="f-views" type="diagrams">
+    <folder name="Sales" id="f-v-sales">
+      <documentation>Views of the sales domain.</documentation>
+      <element xsi:type="archimate:ArchimateDiagramModel" name="Order flow" id="v-sales">
+        <documentation>How a customer orders. See [[ref:v-app]].
+
+[[asset:diagrams/flow.png]]</documentation>
+        <property key="Version" value="1.2"/>
+        <property key="internalNote" value="hidden"/>
+        <child xsi:type="archimate:Group" name="Front office" id="d-grp">
+          <bounds x="20" y="20" width="380" height="120"/>
+          <child xsi:type="archimate:DiagramObject" id="d-actor" archimateElement="e-actor">
+            <bounds x="20" y="40" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="c-assign" source="d-actor" target="d-proc" archimateRelationship="r-assign"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="d-portal" archimateElement="e-portal">
+            <bounds x="220" y="40" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="c-serve" source="d-portal" target="d-proc" archimateRelationship="r-serve"/>
+            <sourceConnection xsi:type="archimate:Connection" id="c-real" source="d-portal" target="d-api" archimateRelationship="r-real"/>
+          </child>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d-proc" targetConnections="c-assign c-serve c-api" archimateElement="e-proc">
+          <bounds x="40" y="200" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d-api" targetConnections="c-real" archimateElement="e-api">
+          <bounds x="240" y="200" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="c-api" source="d-api" target="d-proc" archimateRelationship="r-api"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d-po" archimateElement="g-po">
+          <bounds x="440" y="200" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:Note" id="d-note">
+          <bounds x="440" y="20" width="200" height="80"/>
+          <content>View note: #todo add SLA. Link [[ref:e-core]].</content>
+        </child>
+        <child xsi:type="archimate:DiagramModelReference" id="d-vref" model="v-app">
+          <bounds x="440" y="120" width="200" height="55"/>
+        </child>
+      </element>
+      <folder name="Legacy" id="f-v-legacy">
+        <element xsi:type="archimate:ArchimateDiagramModel" name="Legacy channel" id="v-legacy">
+          <child xsi:type="archimate:DiagramObject" id="d-nodesc" archimateElement="e-nodesc">
+            <bounds x="20" y="20" width="120" height="55"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="d-excl" archimateElement="e-excl">
+            <bounds x="200" y="20" width="120" height="55"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="d-draft" archimateElement="e-draft">
+            <bounds x="380" y="20" width="120" height="55"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="d-internal" archimateElement="e-internal">
+            <bounds x="560" y="20" width="120" height="55"/>
+          </child>
+        </element>
+      </folder>
+    </folder>
+    <folder name="Claims" id="f-v-claims">
+      <element xsi:type="archimate:ArchimateDiagramModel" name="Claim handling" id="v-claims">
+        <documentation>Wide view (landscape PDF page) with junctions.</documentation>
+        <child xsi:type="archimate:DiagramObject" id="d-recv" archimateElement="e-recv">
+          <bounds x="20" y="100" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="c-t1" source="d-recv" target="d-jor" archimateRelationship="r-t1"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d-jor" targetConnections="c-t1" archimateElement="j-or">
+          <bounds x="300" y="120" width="15" height="15"/>
+          <sourceConnection xsi:type="archimate:Connection" id="c-t2" source="d-jor" target="d-check" archimateRelationship="r-t2"/>
+          <sourceConnection xsi:type="archimate:Connection" id="c-t3" source="d-jor" target="d-reject" archimateRelationship="r-t3"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d-check" targetConnections="c-t2" archimateElement="e-check">
+          <bounds x="500" y="40" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="c-t4" source="d-check" target="d-jand" archimateRelationship="r-t4"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d-reject" targetConnections="c-t3" archimateElement="e-reject">
+          <bounds x="500" y="180" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d-jand" targetConnections="c-t4" archimateElement="j-and">
+          <bounds x="900" y="60" width="15" height="15"/>
+          <sourceConnection xsi:type="archimate:Connection" id="c-t5" source="d-jand" target="d-approve" archimateRelationship="r-t5"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="d-approve" targetConnections="c-t5" archimateElement="e-approve">
+          <bounds x="1300" y="20" width="120" height="55"/>
+        </child>
+      </element>
+    </folder>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Applications" id="v-app">
+      <child xsi:type="archimate:DiagramObject" id="d-core" archimateElement="e-core">
+        <bounds x="200" y="20" width="300" height="160"/>
+        <child xsi:type="archimate:DiagramObject" id="d-billing" archimateElement="e-billing">
+          <bounds x="30" y="50" width="120" height="55"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="d-portal2" archimateElement="e-portal">
+        <bounds x="20" y="60" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="c-flow" source="d-portal2" target="d-core" archimateRelationship="r-flow"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="d-actor2" archimateElement="e-actor">
+        <bounds x="20" y="200" width="120" height="55"/>
+      </child>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Empty view" id="v-empty"/>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Secret view" id="v-excl">
+      <property key="doc:exclude" value="true"/>
+      <child xsi:type="archimate:DiagramObject" id="d-x1" archimateElement="e-core">
+        <bounds x="20" y="20" width="120" height="55"/>
+      </child>
+    </element>
+    <element xsi:type="archimate:SketchModel" name="Workshop sketch" id="v-sketch">
+      <child xsi:type="archimate:SketchModelSticky" name="Idea" id="s-1" fillColor="#fff7b2">
+        <bounds x="20" y="20" width="160" height="80"/><content>Sticky text with **bold** and #todo</content>
+      </child>
+      <child xsi:type="archimate:SketchModelActor" name="Sales rep" id="s-2">
+        <bounds x="220" y="20" width="75" height="100"/>
+        <documentation>Actor text.</documentation>
+      </child>
+      <child xsi:type="archimate:Group" name="Sketch group" id="s-3">
+        <bounds x="320" y="20" width="200" height="120"/>
+        <documentation>Group text.</documentation>
+      </child>
+    </element>
+    <element xsi:type="canvas:CanvasModel" name="Canvas board" id="v-canvas">
+      <child xsi:type="canvas:CanvasModelSticky" id="cv-1" fillColor="#c0e0ff">
+        <bounds x="20" y="20" width="200" height="100"/>
+        <content>Canvas sticky content WARNING: careful</content>
+        <notes>Canvas sticky notes [ORDERS]</notes>
+      </child>
+      <child xsi:type="canvas:CanvasModelBlock" id="cv-2">
+        <bounds x="260" y="20" width="200" height="100"/>
+        <content>Canvas block content</content>
+      </child>
+    </element>
+  </folder>
+  <purpose>Model that exercises every documentation feature.
+
+INFO: The purpose shows on the overview page and PDF cover.</purpose>
+  <property key="Model owner" value="Architecture team"/>
+  <profile name="Broker" id="p-broker" conceptType="BusinessActor"/>
+  <profile name="Sync" id="p-sync" conceptType="FlowRelationship"/>
+</archimate:model>
