@@ -1,0 +1,24 @@
+{
+  "pages": [
+    {"title": "Feature Test", "parent": null, "file": "pages/index.xml", "attachments": []},
+    {"title": "Feature Test - Claims", "parent": "Feature Test", "file": "pages/claims.xml", "attachments": []},
+    {"title": "Feature Test - Sales", "parent": "Feature Test", "file": "pages/sales.xml", "attachments": []},
+    {"title": "Feature Test - Legacy", "parent": "Feature Test - Sales", "file": "pages/legacy.xml", "attachments": []},
+    {"title": "Feature Test - Applications", "parent": "Feature Test", "file": "pages/applications.xml", "attachments": []},
+    {"title": "Feature Test - Core apps", "parent": "Feature Test", "file": "pages/core-apps.xml", "attachments": []},
+    {"title": "Feature Test - Database tables", "parent": "Feature Test", "file": "pages/database-tables.xml", "attachments": []},
+    {"title": "Feature Test - Variables", "parent": "Feature Test", "file": "pages/variables.xml", "attachments": []},
+    {"title": "Feature Test - Constants", "parent": "Feature Test", "file": "pages/constants.xml", "attachments": []},
+    {"title": "Feature Test - Changes since 2026-11-10 21:39", "parent": "Feature Test", "file": "pages/changes-since-2026-11-10-21-39.xml", "attachments": []},
+    {"title": "Feature Test - Applications (2)", "parent": "Feature Test", "file": "pages/applications-2.xml", "attachments": ["applications-2.png"]},
+    {"title": "Feature Test - Canvas board", "parent": "Feature Test", "file": "pages/canvas-board.xml", "attachments": ["canvas-board.png"]},
+    {"title": "Feature Test - Empty view", "parent": "Feature Test", "file": "pages/empty-view.xml", "attachments": ["empty-view.png"]},
+    {"title": "Feature Test - Workshop sketch", "parent": "Feature Test", "file": "pages/workshop-sketch.xml", "attachments": ["workshop-sketch.png"]},
+    {"title": "Feature Test - Claim handling", "parent": "Feature Test - Claims", "file": "pages/claim-handling.xml", "attachments": ["claim-handling.png"]},
+    {"title": "Feature Test - Order flow", "parent": "Feature Test - Sales", "file": "pages/order-flow.xml", "attachments": ["order-flow.png", "flow.png", "pricing.csv", "SLA 2026.pdf", "logo.svg", "readme.txt"]},
+    {"title": "Feature Test - Legacy channel", "parent": "Feature Test - Legacy", "file": "pages/legacy-channel.xml", "attachments": ["legacy-channel.png"]},
+    {"title": "Feature Test - Elements not in any view", "parent": "Feature Test", "file": "pages/elements-not-in-any-view.xml", "attachments": []},
+    {"title": "Feature Test - Work packages", "parent": "Feature Test", "file": "pages/work-packages.xml", "attachments": []},
+    {"title": "Feature Test - Labels", "parent": "Feature Test", "file": "pages/labels.xml", "attachments": []}
+  ]
+}
